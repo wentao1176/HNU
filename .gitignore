@@ -16,3 +16,16 @@ interior.png
 campus-mobile.png
 .research/
 .qa/
+
+# 调试截图与临时影像（根目录散落的截图不入库）
+/*.png
+/*.jpg
+
+# 调试与临时目录
+/.sat*/
+/awt/
+/satpub/
+
+# 旧版存档与工具状态（旧代码已在 git 历史中）
+/_legacy/
+/.workbuddy-ai/

@@ -1,21 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#0e1a24" />
-    <meta
-      name="description"
-      content="探索湖南大学南校区、天马与德智园的交互式三维校园。"
-    />
-    <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
-    <title>湖大漫游 · 湖南大学三维校园</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0f12" />
+  <title>岳麓书院 · 三维复原</title>
+  <link rel="icon" href="./favicon.svg" />
+</head>
+<body>
+  <div id="stage">
+    <canvas id="view"></canvas>
+  </div>
+
+  <!-- 载入界面 -->
+  <div id="boot">
+    <div class="boot-inner">
+      <div class="boot-seal">麓</div>
+      <h1>岳麓书院</h1>
+      <p class="boot-sub">Yuelu Academy · 公元 976 —</p>
+      <div class="boot-bar"><i></i></div>
+      <p class="boot-status" id="bootStatus">正在勘测地形</p>
+    </div>
+  </div>
+
+  <!-- 顶部标题 -->
+  <header id="brand">
+    <h1>岳麓书院</h1>
+    <p>惟楚有材 · 于斯为盛</p>
+  </header>
+
+  <!-- 右侧工具条 -->
+  <nav id="tools">
+    <button data-act="view" title="视角模式">鸟瞰</button>
+    <button data-act="time" title="时辰">申时</button>
+    <button data-act="quality" title="画质">高清</button>
+    <button data-act="tour" title="沿导览路线游览">导览</button>
+    <button data-act="shot" title="截图">留影</button>
+  </nav>
+
+  <!-- 左下：地点信息 -->
+  <section id="place" class="hidden">
+    <div class="place-tag" id="placeTag">讲堂</div>
+    <h2 id="placeName">讲堂</h2>
+    <p id="placeDesc"></p>
+    <ul id="placeMeta"></ul>
+  </section>
+
+  <!-- 导览面板 -->
+  <section id="tour" class="hidden">
+    <div class="tour-head">
+      <span id="tourStep">01 / 18</span>
+      <button id="tourExit">退出导览</button>
+    </div>
+    <div class="tour-sub" id="tourSub">起点</div>
+    <h2 id="tourName">东门</h2>
+    <p id="tourText"></p>
+    <div class="tour-nav">
+      <button id="tourPrev">← 上一站</button>
+      <button id="tourNext">下一站 →</button>
+    </div>
+  </section>
+
+  <!-- 右下：操作提示 -->
+  <aside id="hints">
+    <div class="hint-row"><kbd>拖动</kbd><span>环视</span></div>
+    <div class="hint-row"><kbd>滚轮</kbd><span>远近</span></div>
+    <div class="hint-row"><kbd>W A S D</kbd><span>行走</span></div>
+    <div class="hint-row"><kbd>F</kbd><span>自由飞行</span></div>
+  </aside>
+
+  <!-- 底部：地点索引 -->
+  <div id="dock">
+    <div class="dock-scroll" id="dockList"></div>
+  </div>
+
+  <!-- 准星（步行模式） -->
+  <div id="crosshair" class="hidden"></div>
+
+  <!-- 帧率 -->
+  <div id="stat"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
